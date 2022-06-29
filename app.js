@@ -80,6 +80,18 @@ app.get('/', (req, res) => {
     });
 });
 
+app.get('/upload', (req, res) => {
+    imgModel.find({}, (err, items) => {
+        if (err) {
+            console.log(err);
+            res.status(500).send('An error occurred', err);
+        }
+        else {
+            res.render('imagesPage1', { items: items });
+        }
+    });
+});
+
 
 
 
@@ -88,7 +100,7 @@ app.get('/', (req, res) => {
 
 
 
-app.post('/', upload.single('image'), (req, res, next) => {
+app.post('/upload', upload.single('image'), (req, res, next) => {
   
     var obj = {
         name: req.body.name,
@@ -128,3 +140,9 @@ app.post('/', upload.single('image'), (req, res, next) => {
 app.listen(3002, function () {
     console.log("Server is running on 3002");
   });
+
+
+
+// Static
+const staticPath = path.join(__dirname, "./static");
+app.use(express.static(staticPath));
