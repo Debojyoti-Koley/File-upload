@@ -12,11 +12,19 @@ require('dotenv/config');
 
 // Step 2
 
-mongoose.connect(process.env.MONGO_URL,
-    { useNewUrlParser: true, useUnifiedTopology: true }, err => {
-        console.log('connected')
-    });
+// mongoose.connect(process.env.MONGO_URL,
+//     { useNewUrlParser: true, useUnifiedTopology: true }, err => {
+//         console.log('connected')
+//     });
 
+
+    mongoose.connect(
+        "mongodb+srv://Me:abcd1234@cluster0.5dt41.mongodb.net/CollegeTrips",
+        { useNewUrlParser: true },
+        { useUnifiedTopology: true },err =>{
+            console.log('connected')
+        }
+      );
 
 
 // Step 3:- Create model.js
@@ -108,9 +116,15 @@ app.post('/', upload.single('image'), (req, res, next) => {
 
 // Step 9 - configure the server's port
   
-var port = process.env.PORT || '3002'
-app.listen(port, err => {
-    if (err)
-        throw err
-    console.log('Server listening on port', port)
-})
+// var port = process.env.PORT || '3002'
+// app.listen(port, err => {
+//     if (err)
+//         throw err
+//     console.log('Server listening on port', port)
+// })
+
+
+
+app.listen(3002, function () {
+    console.log("Server is running on 3002");
+  });
